@@ -5,7 +5,8 @@
       "Bash(node test-imports.js:*)",
       "Bash(npm install:*)",
       "Bash(git commit:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(curl:*)"
     ]
   }
 }
