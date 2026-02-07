@@ -25,7 +25,7 @@ export default function Hero({ onStartSearch }) {
             </div>
             <div>
               <h1 className="text-3xl font-black text-white tracking-tight">
-                SolarScope
+                GridSight
               </h1>
               <p className="text-xs text-orange-400 font-semibold">AI-Powered Site Discovery</p>
             </div>

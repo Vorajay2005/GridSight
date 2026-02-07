@@ -85,11 +85,11 @@ function App() {
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-lg blur-md opacity-50"></div>
             <div className="relative w-10 h-10 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-lg flex items-center justify-center">
-              <span className="text-white text-xl font-bold">S</span>
+              <span className="text-white text-xl font-bold">G</span>
             </div>
           </div>
           <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">
-            SolarScope
+            GridSight
           </h1>
         </div>
         <nav className="hidden md:flex space-x-6 text-gray-400">
