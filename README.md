@@ -12,18 +12,9 @@ GridSight is an AI-powered renewable energy site discovery platform that combine
 ## 📸 Screenshots
 
 <div align="center">
+<img width="1439" height="819" alt="Screenshot 2026-02-06 at 10 17 20 PM" src="https://github.com/user-attachments/assets/fdd7f07c-2e96-45f8-834c-cf4b276fc05e" />
 
-![Search Interface](./docs/images/search-interface.png)
-*Intelligent search panel with natural language input*
-
-![Map View](./docs/images/map-view.png)
-*Interactive map with ranked site markers*
-
-![Site Details](./docs/images/site-details.png)
-*Comprehensive AI-powered site analysis*
-
-![Agent Status](./docs/images/agent-status.png)
-*Real-time multi-agent processing*
+<img width="665" height="734" alt="Screenshot 2026-02-06 at 10 19 26 PM" src="https://github.com/user-attachments/assets/ed207c68-81ec-4f48-96c7-164930682b05" />
 
 </div>
 
