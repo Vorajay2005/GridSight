@@ -1,12 +1,21 @@
-import { Sun, Zap, MapPin, Sparkles, ArrowRight, Database, Brain, Globe } from 'lucide-react'
-import AnimatedBackground from './AnimatedBackground'
+import {
+  Sun,
+  Zap,
+  MapPin,
+  Sparkles,
+  ArrowRight,
+  Database,
+  Brain,
+  Globe,
+} from "lucide-react";
+import AnimatedBackground from "./AnimatedBackground";
 
 export default function Hero({ onStartSearch }) {
   const exampleQueries = [
     "50-acre solar farm in Arizona with high irradiance",
     "Solar installation in California, flat terrain",
-    "30-acre solar site in Texas near grid infrastructure"
-  ]
+    "30-acre solar site in Texas near grid infrastructure",
+  ];
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -25,15 +34,19 @@ export default function Hero({ onStartSearch }) {
             </div>
             <div>
               <h1 className="text-3xl font-black text-white tracking-tight">
-                SolarScope
+                GridSight
               </h1>
-              <p className="text-xs text-orange-400 font-semibold">AI-Powered Site Discovery</p>
+              <p className="text-xs text-orange-400 font-semibold">
+                AI-Powered Site Discovery
+              </p>
             </div>
           </div>
 
           <div className="flex items-center space-x-4">
             <div className="px-4 py-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20">
-              <span className="text-green-400 text-sm font-semibold">● Live</span>
+              <span className="text-green-400 text-sm font-semibold">
+                ● Live
+              </span>
             </div>
           </div>
         </div>
@@ -43,7 +56,9 @@ export default function Hero({ onStartSearch }) {
           <div className="space-y-8 text-center">
             <div className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 rounded-full border border-orange-500/30 backdrop-blur-sm">
               <Sparkles className="text-orange-400" size={16} />
-              <span className="text-sm font-semibold text-orange-300">Powered by Google Earth Engine & Gemini AI</span>
+              <span className="text-sm font-semibold text-orange-300">
+                Powered by Google Earth Engine & Gemini AI
+              </span>
             </div>
 
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight">
@@ -57,8 +72,9 @@ export default function Hero({ onStartSearch }) {
             </h2>
 
             <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-              Leverage AI and satellite imagery to discover optimal renewable energy locations.
-              Analyze terrain, irradiance, and infrastructure in real-time.
+              Leverage AI and satellite imagery to discover optimal renewable
+              energy locations. Analyze terrain, irradiance, and infrastructure
+              in real-time.
             </p>
 
             {/* CTA Buttons */}
@@ -69,7 +85,10 @@ export default function Hero({ onStartSearch }) {
               >
                 <span className="relative z-10 flex items-center justify-center space-x-2">
                   <span>Start Searching</span>
-                  <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+                  <ArrowRight
+                    className="group-hover:translate-x-1 transition-transform"
+                    size={20}
+                  />
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </button>
@@ -85,19 +104,25 @@ export default function Hero({ onStartSearch }) {
                 <div className="text-3xl font-black bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">
                   100+
                 </div>
-                <div className="text-xs text-gray-400 mt-1 font-semibold">Real Locations</div>
+                <div className="text-xs text-gray-400 mt-1 font-semibold">
+                  Real Locations
+                </div>
               </div>
               <div className="text-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
                 <div className="text-3xl font-black bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
                   10+
                 </div>
-                <div className="text-xs text-gray-400 mt-1 font-semibold">Data Sources</div>
+                <div className="text-xs text-gray-400 mt-1 font-semibold">
+                  Data Sources
+                </div>
               </div>
               <div className="text-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
                 <div className="text-3xl font-black bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
                   24
                 </div>
-                <div className="text-xs text-gray-400 mt-1 font-semibold">US States</div>
+                <div className="text-xs text-gray-400 mt-1 font-semibold">
+                  US States
+                </div>
               </div>
             </div>
           </div>
@@ -109,24 +134,39 @@ export default function Hero({ onStartSearch }) {
             <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
               <Database className="text-white" size={28} />
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">Real Satellite Data</h3>
-            <p className="text-gray-400">Analyze solar irradiance, terrain slope, and land cover using Google Earth Engine's global datasets</p>
+            <h3 className="text-xl font-bold text-white mb-2">
+              Real Satellite Data
+            </h3>
+            <p className="text-gray-400">
+              Analyze solar irradiance, terrain slope, and land cover using
+              Google Earth Engine's global datasets
+            </p>
           </div>
 
           <div className="group p-8 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-md rounded-2xl border border-white/10 hover:border-blue-500/50 transition-all duration-300 hover:transform hover:scale-105">
             <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
               <Brain className="text-white" size={28} />
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">AI-Powered Intelligence</h3>
-            <p className="text-gray-400">Multi-agent system powered by Google Gemini AI for intelligent site scoring and natural language queries</p>
+            <h3 className="text-xl font-bold text-white mb-2">
+              AI-Powered Intelligence
+            </h3>
+            <p className="text-gray-400">
+              Multi-agent system powered by Google Gemini AI for intelligent
+              site scoring and natural language queries
+            </p>
           </div>
 
           <div className="group p-8 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-md rounded-2xl border border-white/10 hover:border-green-500/50 transition-all duration-300 hover:transform hover:scale-105">
             <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
               <Globe className="text-white" size={28} />
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">Nationwide Coverage</h3>
-            <p className="text-gray-400">Explore verified solar-suitable locations across 24+ US states with real coordinates and terrain data</p>
+            <h3 className="text-xl font-bold text-white mb-2">
+              Nationwide Coverage
+            </h3>
+            <p className="text-gray-400">
+              Explore verified solar-suitable locations across 24+ US states
+              with real coordinates and terrain data
+            </p>
           </div>
         </div>
 
@@ -143,8 +183,13 @@ export default function Hero({ onStartSearch }) {
                 className="group p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-orange-500/50 hover:bg-white/10 transition-all cursor-pointer"
               >
                 <div className="flex items-center space-x-3">
-                  <MapPin className="text-orange-400 flex-shrink-0 group-hover:scale-110 transition-transform" size={18} />
-                  <span className="text-gray-300 group-hover:text-white transition-colors">{query}</span>
+                  <MapPin
+                    className="text-orange-400 flex-shrink-0 group-hover:scale-110 transition-transform"
+                    size={18}
+                  />
+                  <span className="text-gray-300 group-hover:text-white transition-colors">
+                    {query}
+                  </span>
                 </div>
               </div>
             ))}
@@ -154,10 +199,11 @@ export default function Hero({ onStartSearch }) {
         {/* Footer */}
         <div className="mt-20 pt-8 border-t border-white/10 text-center">
           <p className="text-gray-500 text-sm">
-            Built for Snow Fest Hackathon 2025 | Powered by cutting-edge AI and satellite technology
+            Built for UHACCS 2026 | Powered by cutting-edge AI and satellite
+            technology
           </p>
         </div>
       </div>
     </div>
-  )
+  );
 }
