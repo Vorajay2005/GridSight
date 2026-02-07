@@ -1,53 +1,54 @@
-import { useEffect, useRef } from 'react'
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
+import { useEffect, useState } from 'react'
+import { MapContainer, TileLayer, Marker, Popup, useMap, LayersControl } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+
+const { BaseLayer } = LayersControl
 
 // Fix for default marker icons in React-Leaflet
 delete L.Icon.Default.prototype._getIconUrl
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
 })
 
-// Custom marker icons for ranked sites
-const createNumberedIcon = (number, color) => {
+// Custom marker icons
+const createCustomIcon = (rank) => {
+  let iconColor = '#cd7f32' // bronze
+  let iconSize = [25, 41]
+
+  if (rank === 1) {
+    iconColor = '#FFD700' // gold
+    iconSize = [35, 51]
+  } else if (rank === 2 || rank === 3) {
+    iconColor = '#C0C0C0' // silver
+    iconSize = [30, 46]
+  }
+
   return L.divIcon({
     className: 'custom-marker',
     html: `
-      <div style="
-        background: linear-gradient(135deg, ${color} 0%, ${color}dd 100%);
-        width: 40px;
-        height: 40px;
-        border-radius: 50% 50% 50% 0;
-        border: 3px solid white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        color: white;
-        font-size: 16px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        transform: rotate(-45deg);
-      ">
-        <span style="transform: rotate(45deg);">${number}</span>
+      <div style="position: relative;">
+        <svg width="${iconSize[0]}" height="${iconSize[1]}" viewBox="0 0 25 41">
+          <path d="M12.5,0 C5.6,0 0,5.6 0,12.5 C0,21.9 12.5,41 12.5,41 S25,21.9 25,12.5 C25,5.6 19.4,0 12.5,0 Z" fill="${iconColor}" stroke="#fff" stroke-width="2"/>
+          <text x="12.5" y="16" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">${rank}</text>
+        </svg>
       </div>
     `,
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
-    popupAnchor: [0, -40],
+    iconSize: iconSize,
+    iconAnchor: [iconSize[0] / 2, iconSize[1]],
+    popupAnchor: [0, -iconSize[1]]
   })
 }
 
-// Component to handle map bounds updates
-function MapBoundsUpdater({ sites }) {
+function MapController({ sites }) {
   const map = useMap()
 
   useEffect(() => {
     if (sites && sites.length > 0) {
       const bounds = sites.map(site => [site.coordinates.lat, site.coordinates.lon])
-      map.fitBounds(bounds, { padding: [50, 50], maxZoom: 10 })
+      map.fitBounds(bounds, { padding: [50, 50] })
     }
   }, [sites, map])
 
@@ -55,67 +56,68 @@ function MapBoundsUpdater({ sites }) {
 }
 
 export default function MapView({ sites, onSiteClick }) {
-  const mapRef = useRef(null)
-
-  const getMarkerColor = (rank) => {
-    if (rank === 1) return '#FFD700' // Gold
-    if (rank === 2) return '#C0C0C0' // Silver
-    if (rank === 3) return '#CD7F32' // Bronze
-    return '#FF6B35' // Solar orange for others
-  }
-
   const defaultCenter = [37.0902, -95.7129] // Center of USA
   const defaultZoom = 4
 
   return (
-    <div className="h-full w-full relative">
+    <div className="h-full w-full">
       <MapContainer
         center={defaultCenter}
         zoom={defaultZoom}
-        className="h-full w-full"
-        ref={mapRef}
+        style={{ height: '100%', width: '100%' }}
+        scrollWheelZoom={true}
       >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+        <LayersControl position="topright">
+          <BaseLayer checked name="Street Map">
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+          </BaseLayer>
 
-        {sites && sites.map((site, index) => (
+          <BaseLayer name="Satellite">
+            <TileLayer
+              attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+              url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+              maxZoom={19}
+            />
+          </BaseLayer>
+
+          <BaseLayer name="Terrain">
+            <TileLayer
+              attribution='Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a>'
+              url="https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png"
+              maxZoom={17}
+            />
+          </BaseLayer>
+        </LayersControl>
+
+        {sites && sites.map((site, idx) => (
           <Marker
-            key={index}
+            key={idx}
             position={[site.coordinates.lat, site.coordinates.lon]}
-            icon={createNumberedIcon(site.rank, getMarkerColor(site.rank))}
+            icon={createCustomIcon(site.rank || idx + 1)}
             eventHandlers={{
-              click: () => onSiteClick(site),
+              click: () => onSiteClick(site)
             }}
           >
             <Popup>
               <div className="text-sm">
-                <strong className="text-solar-orange">Site #{site.rank}</strong>
-                <br />
-                Score: {site.score}/100
+                <div className="font-bold text-solar-orange">Site #{site.rank || idx + 1}</div>
                 {site.location_name && (
-                  <>
-                    <br />
-                    {site.location_name}
-                  </>
+                  <div className="font-semibold text-gray-800">{site.location_name}</div>
                 )}
+                <div className="text-gray-700">Score: {site.score}/100</div>
+                <div className="text-xs text-gray-600 mt-1">
+                  {site.coordinates.lat.toFixed(4)}°N, {Math.abs(site.coordinates.lon).toFixed(4)}°W
+                </div>
               </div>
             </Popup>
           </Marker>
         ))}
 
-        <MapBoundsUpdater sites={sites} />
+        {sites && sites.length > 0 && <MapController sites={sites} />}
       </MapContainer>
-
-      {(!sites || sites.length === 0) && (
-        <div className="absolute inset-0 flex items-center justify-center bg-slate-900/50 pointer-events-none">
-          <div className="text-center text-gray-400">
-            <p className="text-lg font-semibold">No sites to display</p>
-            <p className="text-sm mt-2">Submit a search query to see results on the map</p>
-          </div>
-        </div>
-      )}
     </div>
   )
 }

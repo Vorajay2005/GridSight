@@ -25,7 +25,7 @@ export default function Hero({ onStartSearch }) {
             </div>
             <div>
               <h1 className="text-3xl font-black text-white tracking-tight">
-                GridSight
+                SolarScope
               </h1>
               <p className="text-xs text-orange-400 font-semibold">AI-Powered Site Discovery</p>
             </div>
@@ -154,7 +154,7 @@ export default function Hero({ onStartSearch }) {
         {/* Footer */}
         <div className="mt-20 pt-8 border-t border-white/10 text-center">
           <p className="text-gray-500 text-sm">
-            Built for UHACCS 2026 | Powered by cutting-edge AI and satellite technology
+            Built for Snow Fest Hackathon 2025 | Powered by cutting-edge AI and satellite technology
           </p>
         </div>
       </div>
