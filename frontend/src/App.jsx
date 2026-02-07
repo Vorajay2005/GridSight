@@ -73,6 +73,14 @@ function App() {
     setSelectedSite(site)
   }
 
+  const handleGoHome = () => {
+    setShowHero(true)
+    setSearchResults(null)
+    setSelectedSite(null)
+    setAgentStatus([])
+    setIsSearching(false)
+  }
+
   if (showHero) {
     return <Hero onStartSearch={handleStartSearch} />
   }
@@ -81,7 +89,7 @@ function App() {
     <div className="h-screen flex flex-col bg-slate-950">
       {/* Header */}
       <header className="bg-slate-900/50 backdrop-blur-md border-b border-white/10 px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center space-x-3">
+        <button onClick={handleGoHome} className="flex items-center space-x-3 hover:opacity-80 transition">
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-lg blur-md opacity-50"></div>
             <div className="relative w-10 h-10 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-lg flex items-center justify-center">
@@ -91,9 +99,9 @@ function App() {
           <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">
             GridSight
           </h1>
-        </div>
+        </button>
         <nav className="hidden md:flex space-x-6 text-gray-400">
-          <a href="#" className="hover:text-orange-400 transition">Home</a>
+          <button onClick={handleGoHome} className="hover:text-orange-400 transition">Home</button>
         </nav>
       </header>
 
