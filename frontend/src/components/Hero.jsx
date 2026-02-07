@@ -154,7 +154,7 @@ export default function Hero({ onStartSearch }) {
         {/* Footer */}
         <div className="mt-20 pt-8 border-t border-white/10 text-center">
           <p className="text-gray-500 text-sm">
-            Built for Snow Fest Hackathon 2025 | Powered by cutting-edge AI and satellite technology
+            Built for UHACCS 2026 | Powered by cutting-edge AI and satellite technology
           </p>
         </div>
       </div>
