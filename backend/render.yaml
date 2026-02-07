@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: solarscope-api
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEE_SERVICE_ACCOUNT
+        sync: false
+      - key: FLASK_ENV
+        value: production
+      - key: PORT
+        value: 5000
