@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pkill:*)",
+      "Bash(node test-imports.js:*)",
+      "Bash(npm install:*)"
+    ]
+  }
+}
