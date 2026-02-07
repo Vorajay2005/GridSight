@@ -2,7 +2,8 @@
 
 > **Discover optimal renewable energy sites in minutes, not months**
 
-![GridSight Hero](./docs/images/hero-screenshot.png)
+<img width="1440" height="818" alt="hero-screenshot" src="https://github.com/user-attachments/assets/c3d2b357-d6c0-4861-89c1-cbf13be65639" />
+
 
 GridSight is an AI-powered renewable energy site discovery platform that combines multi-agent AI with Google Earth Engine's satellite data to automate site selection. Users describe their project in plain English, and the system analyzes thousands of locations using real satellite imagery to identify optimal sites.
 
