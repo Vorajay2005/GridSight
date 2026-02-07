@@ -3,7 +3,8 @@
     "allow": [
       "Bash(pkill:*)",
       "Bash(node test-imports.js:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(git commit:*)"
     ]
   }
 }
